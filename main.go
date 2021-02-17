@@ -44,8 +44,8 @@ func (app *Application) handleRequests() {
 	err := http.ListenAndServe(app.Host+":"+app.Port, nil)
 	if err != nil {
 		log.Fatal("error!", err)
+	} else {
+		app.logger.Println("server started")
 	}
-
-	app.logger.Println("server started")
 
 }
