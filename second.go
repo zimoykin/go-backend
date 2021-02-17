@@ -33,4 +33,6 @@ func getBlogs() string {
 	return "somewhere: " + blogs
 }
 
-var server = "http://10.0.1.6:8000/"
+var (
+	server = "http://10.0.1.6:8000/"
+)
