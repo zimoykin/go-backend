@@ -5,3 +5,7 @@ type Configuration struct {
 	RedisAddr string `env:"REDIS_ADDR" envDefault:":6379"`
 	RedisPwd  string `env:"REDIS_PWD"`
 }
+
+func newConfig() {
+
+}

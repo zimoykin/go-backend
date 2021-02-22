@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/zimoykin/go-backend/app"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -25,4 +26,8 @@ func main() {
 
 	mux.HandleFunc("/", indexHandler)
 	http.ListenAndServe(":"+port, mux)
+
+	app := app.Application()
+	println(app)
+
 }
