@@ -1,51 +1,28 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("<h1>Hello World!</h1>"))
+}
+
 func main() {
-	app := StartApp()
-	app.handleRequests()
-}
-
-func whoami(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "server!")
-	fmt.Fprintf(w, r.URL.Query().Encode())
-}
-
-type Application struct {
-	//routes map[string]int
-	logger *log.Logger
-	Port   string
-	Host   string
-}
-
-func StartApp() *Application {
-
-	res := Application{
-		Port: "8080",
-		Host: "0.0.0.0",
-	}
-
-	return &res
-}
-
-func (app *Application) handleRequests() {
-
-	http.HandleFunc("/", whoami)
-	http.HandleFunc("/second", second)
-
-	jsontestFunc := http.HandlerFunc(jsontest)
-	http.Handle("/api/v1/jsontest", middleTest(jsontestFunc))
-
-	err := http.ListenAndServe(app.Host+":"+app.Port, nil)
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("error!", err)
-	} else {
-		app.logger.Println("server started")
+		log.Println("Error loading .env file")
 	}
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+	mux := http.NewServeMux()
 
+	mux.HandleFunc("/", indexHandler)
+	http.ListenAndServe(":"+port, mux)
 }
