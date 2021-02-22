@@ -3,8 +3,8 @@ package app
 import (
 	"log"
 
-	"github.com/zimoykin/golnag1/config"
-	"github.com/zimoykin/golnag1/database"
+	"github.com/zimoykin/go-backend/config"
+	"github.com/zimoykin/go-backend/database"
 )
 
 type Application struct {

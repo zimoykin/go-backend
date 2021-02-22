@@ -1,4 +1,4 @@
-module github.com/zimoykin/golnag1
+module github.com/zimoykin/go-backend
 
 go 1.15
 
