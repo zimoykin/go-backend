@@ -14,8 +14,14 @@ type Application struct {
 	db     *database.Configuration
 }
 
-func (s *Application) Start() {
+func (app *Application) Start() {
 
 	log.Println("started")
 
+}
+
+func (app *Application) init() Application {
+	return Application{
+		Host: "", Port: "",
+	}
 }
